@@ -1,0 +1,6 @@
+.app-wrapper__nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}

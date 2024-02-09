@@ -1,0 +1,8 @@
+.button-actions button{
+    padding: 10px;
+	border: 2px solid black;
+}
+
+.button-actions {
+    margin-top: 10px;
+}

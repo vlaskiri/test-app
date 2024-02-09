@@ -1,0 +1,60 @@
+.article-modal__container {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 50%;
+	height: 90vh;
+	margin: 0 auto;
+	border: 2px solid black;
+	background-color: #000;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+    /* overflow-y: hidden; */
+}
+
+.article-modal__container form {
+	padding: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	text-align: center;
+    width: 100%;
+}
+
+.article-modal__container button[type='submit'] {
+	margin-top: 26px;
+	width: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+    font-size: 24px;
+}
+
+.close-button {
+    font-size: 24px;
+	padding: 20px;
+	border: 2px solid green;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    width: 90%;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	margin-top: 6px;
+}
+
+.form-group input,
+textarea {
+	margin-top: -12px;
+	border: 2px solid green;
+	padding: 2px;
+    width: 100%;
+}
