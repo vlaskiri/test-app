@@ -1,4 +1,6 @@
 import React, { useId, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addArticles } from '../store/actions/articlesActions';
 import '../styles/articleModal.css';
 
 const CreateArticleModal = ({ setArticleList, onClose }) => {
@@ -12,6 +14,7 @@ const CreateArticleModal = ({ setArticleList, onClose }) => {
 		isUserCreate: true,
 		id,
 	});
+	const dispatch = useDispatch();
 
 	const sliceText = (text, maxLength) => {
 		const words = text.split('');
@@ -19,7 +22,7 @@ const CreateArticleModal = ({ setArticleList, onClose }) => {
 		if (words.length > maxLength) {
 			return words.slice(0, maxLength).join('') + '...';
 		}
-        return words;
+		return words;
 	};
 
 	const onFormSubmit = e => {
@@ -34,10 +37,23 @@ const CreateArticleModal = ({ setArticleList, onClose }) => {
 
 		if (!isFormValid) return;
 
-        const slicedText = sliceText(formCreateArticle.description, 150);
+		const slicedText = sliceText(formCreateArticle.description, 150);
 
-		setArticleList(prev => [
-			{
+		// setArticleList(prev => [
+		// 	{
+		// 		src: formCreateArticle.imageUrl,
+		// 		alt: formCreateArticle.description,
+		// 		title: formCreateArticle.title,
+		// 		description: slicedText,
+		// 		author: formCreateArticle.author,
+		// 		isUserCreate: true,
+		// 		id,
+		// 	},
+		// 	...prev,
+		// ]);
+
+		dispatch(
+			addArticles({
 				src: formCreateArticle.imageUrl,
 				alt: formCreateArticle.description,
 				title: formCreateArticle.title,
@@ -45,9 +61,8 @@ const CreateArticleModal = ({ setArticleList, onClose }) => {
 				author: formCreateArticle.author,
 				isUserCreate: true,
 				id,
-			},
-			...prev,
-		]);
+			})
+		);
 
 		onClose();
 	};

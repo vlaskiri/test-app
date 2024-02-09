@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import ArticleList from './ArticleList';
-import '../styles/articleGenerate.css'
+import '../styles/articleGenerate.css';
+import ArticleItem from './ArticleItem';
 
 const initialUrl =
 	'https://newsapi.org/v2/everything?q=tesla&from=2024-01-09&sortBy=publishedAt&apiKey=50c0364d149b4abe89fd0e0f62bea602';
@@ -12,7 +12,8 @@ const ArticleGenerate = () => {
 	const fetchMoreArticles = async () => {
 		try {
 			const initialPageSize = 10;
-			const pageNumber = Math.ceil(articleGenerateList.length / initialPageSize) + 1;
+			const pageNumber =
+				Math.ceil(articleGenerateList.length / initialPageSize) + 1;
 			const url = `${initialUrl}&pageSize=${initialPageSize}&page=${pageNumber}`;
 			const { data } = await axios.get(url);
 			setArticleGenerateList(prevArticles => [
@@ -46,7 +47,7 @@ const ArticleGenerate = () => {
 
 			<div className='article-container'>
 				{articleGenerateList.map((el, index) => (
-					<ArticleList
+					<ArticleItem
 						key={index}
 						url={el.urlToImage}
 						alt={el.description}
