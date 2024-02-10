@@ -13,8 +13,11 @@ function App() {
 					<Navbar />
 					<div className='app-wrapper__main-content'>
 						<Routes>
-							<Route path='/article' element={<ArticleList />} />
-							<Route path='/article-random' element={<ArticleGenerate />} />
+							<Route path='/test-app/article' element={<ArticleList />} />
+							<Route
+								path='/test-app/article-random'
+								element={<ArticleGenerate />}
+							/>
 						</Routes>
 					</div>
 				</div>

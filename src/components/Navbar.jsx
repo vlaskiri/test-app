@@ -6,11 +6,11 @@ const Navbar = () => {
 	return (
 		<nav className='app-wrapper__nav-content'>
 			<div>
-				<NavLink to='/article'>Article</NavLink>
+				<NavLink to='/test-app/article'>Article</NavLink>
 			</div>
 
 			<div>
-				<NavLink to='/article-random'>ArticleGenerate</NavLink>
+				<NavLink to='/test-app/article-random'>ArticleGenerate</NavLink>
 			</div>
 		</nav>
 	);
