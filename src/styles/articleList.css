@@ -6,11 +6,18 @@
 	gap: 20px;
 }
 
+.pin-article-container {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 10px;
+}
+
 .article-content {
 	width: calc(33.33% - 26px);
 	max-height: 566px;
 	border: 2px solid #000;
-	margin-bottom: 20px;
 	padding: 6px;
 	display: flex;
 	flex-direction: column;

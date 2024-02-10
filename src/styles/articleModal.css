@@ -13,7 +13,6 @@
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-    /* overflow-y: hidden; */
 }
 
 .article-modal__container form {
@@ -23,7 +22,7 @@
 	justify-content: center;
 	flex-direction: column;
 	text-align: center;
-    width: 100%;
+	width: 100%;
 }
 
 .article-modal__container button[type='submit'] {
@@ -33,18 +32,18 @@
 	align-items: center;
 	justify-content: center;
 	padding: 20px;
-    font-size: 24px;
+	font-size: 24px;
 }
 
 .close-button {
-    font-size: 24px;
+	font-size: 24px;
 	padding: 20px;
 	border: 2px solid green;
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .form-group {
-    width: 90%;
+	width: 90%;
 	display: flex;
 	flex-direction: column;
 	gap: 14px;
@@ -56,5 +55,5 @@ textarea {
 	margin-top: -12px;
 	border: 2px solid green;
 	padding: 2px;
-    width: 100%;
+	width: 100%;
 }

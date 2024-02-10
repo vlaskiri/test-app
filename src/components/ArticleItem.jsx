@@ -1,44 +1,42 @@
 import React from 'react';
-import '../styles/articleList.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { deletePinArticle } from '../store/actions/articlesActions';
+import {
+	deletePinArticle,
+	setArticlesList,
+	setPinArticle,
+} from '../store/actions/articlesActions';
+import '../styles/articleList.css';
 
-const ArticleItem = ({
-	url,
-	alt,
-	title,
-	description,
-	author,
-	setArticleList,
-	id,
-	article
-}) => {
-	const pinArticle = useSelector((state) => state.articles.pinArticle);
-  const dispatch = useDispatch();
+const ArticleItem = ({ article }) => {
+	const pinArticle = useSelector(state => state.articles.pinArticle);
+	const articles = useSelector(state => state.articles.list);
+	const dispatch = useDispatch();
 
 	const onPinArticle = () => {
-		if (pinArticle?.id === id) {
-			dispatch(deletePinArticle);
+		if (pinArticle?.id === article.id) {
+			dispatch(deletePinArticle());
 		} else {
-			dispatch(setArticleList(article));
+			dispatch(setPinArticle(article));
 		}
 	};
 
 	const onDeleteArticle = () => {
-		setArticleList(prev => prev.filter(article => article.id !== id));
+		dispatch(
+			setArticlesList(articles.filter(articled => articled.id !== article.id))
+		);
 	};
 
-	const pinButtonText = pinArticle?.id === id ? 'Unpin' : 'Pin';
+	const pinText = pinArticle?.id === article.id ? 'Unpin' : 'Pin';
 
 	return (
 		<div className='article-content'>
-			<img src={url} alt={alt} />
-			<h2>{title}</h2>
-			<p>{description}</p>
-			<p>{author}</p>
-			{id && (
+			<img src={article.urlToImage} alt={article.description} />
+			<h2>{article.title}</h2>
+			<p>{article.description}</p>
+			<p>{article.author}</p>
+			{article.id && (
 				<div className='article-active'>
-					<button onClick={onPinArticle}>{pinButtonText}</button>
+					<button onClick={onPinArticle}>{pinText}</button>
 					<button onClick={onDeleteArticle}>Delete</button>
 				</div>
 			)}

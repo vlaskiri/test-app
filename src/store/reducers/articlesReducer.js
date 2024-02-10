@@ -1,13 +1,16 @@
 import {
-	ACTION_SET_ARTICLES,
 	ACTION_ADD_ARTICLES,
-	ACTION_SET_PIN_ARTICLES,
 	ACTION_DELETE_PIN_ARTICLES,
+	ACTION_MORE_ARTICLES_GENERATE,
+	ACTION_SET_ARTICLES,
+	ACTION_SET_ARTICLES_GENERATE,
+	ACTION_SET_PIN_ARTICLES,
 } from '../actions/articlesActions';
 
 const initialState = {
 	list: [],
-    pinArticle: null,
+	listGenerate: [],
+	pinArticle: null,
 };
 
 export default function articlesReducer(
@@ -25,6 +28,18 @@ export default function articlesReducer(
 			return {
 				...state,
 				list: [payload, ...state.list],
+			};
+		}
+		case ACTION_SET_ARTICLES_GENERATE: {
+			return {
+				...state,
+				listGenerate: payload,
+			};
+		}
+		case ACTION_MORE_ARTICLES_GENERATE: {
+			return {
+				...state,
+				listGenerate: [...state.listGenerate, ...payload],
 			};
 		}
 		case ACTION_SET_PIN_ARTICLES: {

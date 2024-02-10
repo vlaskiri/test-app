@@ -1,41 +1,27 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	generateArticleFetch,
+	initialGenerateArticleFetch,
+} from '../store/actions/articlesActions';
 import '../styles/articleGenerate.css';
 import ArticleItem from './ArticleItem';
 
-const initialUrl =
-	'https://newsapi.org/v2/everything?q=tesla&from=2024-01-09&sortBy=publishedAt&apiKey=50c0364d149b4abe89fd0e0f62bea602';
-
 const ArticleGenerate = () => {
-	const [articleGenerateList, setArticleGenerateList] = useState([]);
+	const articlesGenerate = useSelector(state => state.articles.listGenerate);
+	const dispatch = useDispatch();
 
 	const fetchMoreArticles = async () => {
-		try {
-			const initialPageSize = 10;
-			const pageNumber =
-				Math.ceil(articleGenerateList.length / initialPageSize) + 1;
-			const url = `${initialUrl}&pageSize=${initialPageSize}&page=${pageNumber}`;
-			const { data } = await axios.get(url);
-			setArticleGenerateList(prevArticles => [
-				...prevArticles,
-				...data.articles,
-			]);
-		} catch (error) {
-			console.error('Error message: ', error);
-		}
+		const initialPageSize = 10;
+		const pageNumber = Math.ceil(articlesGenerate.length / initialPageSize) + 1;
+		dispatch(generateArticleFetch(initialPageSize, pageNumber));
 	};
 
 	useEffect(() => {
-		const fetchInitialArticle = async () => {
-			try {
-				const { data } = await axios.get(`${initialUrl}&pageSize=10`);
-				setArticleGenerateList(data.articles);
-			} catch (error) {
-				console.error('Error message: ', error);
-			}
-		};
-		fetchInitialArticle();
-	}, []);
+		if (!articlesGenerate?.length) {
+			dispatch(initialGenerateArticleFetch());
+		}
+	}, [articlesGenerate?.length, dispatch]);
 
 	return (
 		<>
@@ -46,15 +32,8 @@ const ArticleGenerate = () => {
 			</div>
 
 			<div className='article-container'>
-				{articleGenerateList.map((el, index) => (
-					<ArticleItem
-						key={index}
-						url={el.urlToImage}
-						alt={el.description}
-						title={el.title}
-						description={el.description}
-						author={el.author}
-					/>
+				{articlesGenerate.map((el, index) => (
+					<ArticleItem article={el} key={index} />
 				))}
 			</div>
 		</>

@@ -3,7 +3,8 @@ import { useDispatch } from 'react-redux';
 import { addArticles } from '../store/actions/articlesActions';
 import '../styles/articleModal.css';
 
-const CreateArticleModal = ({ setArticleList, onClose }) => {
+const CreateArticleModal = ({ onClose }) => {
+	const dispatch = useDispatch();
 	const id = useId();
 	const [formCreateArticle, setFormCreateArticle] = useState({
 		title: '',
@@ -11,10 +12,8 @@ const CreateArticleModal = ({ setArticleList, onClose }) => {
 		imageUrl: '',
 		description: '',
 		content: '',
-		isUserCreate: true,
 		id,
 	});
-	const dispatch = useDispatch();
 
 	const sliceText = (text, maxLength) => {
 		const words = text.split('');
@@ -39,19 +38,6 @@ const CreateArticleModal = ({ setArticleList, onClose }) => {
 
 		const slicedText = sliceText(formCreateArticle.description, 150);
 
-		// setArticleList(prev => [
-		// 	{
-		// 		src: formCreateArticle.imageUrl,
-		// 		alt: formCreateArticle.description,
-		// 		title: formCreateArticle.title,
-		// 		description: slicedText,
-		// 		author: formCreateArticle.author,
-		// 		isUserCreate: true,
-		// 		id,
-		// 	},
-		// 	...prev,
-		// ]);
-
 		dispatch(
 			addArticles({
 				src: formCreateArticle.imageUrl,
@@ -59,7 +45,6 @@ const CreateArticleModal = ({ setArticleList, onClose }) => {
 				title: formCreateArticle.title,
 				description: slicedText,
 				author: formCreateArticle.author,
-				isUserCreate: true,
 				id,
 			})
 		);

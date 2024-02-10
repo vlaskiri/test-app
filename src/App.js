@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import ArticleList from './components/ArticleList';
-import ArticleGenerate from './components/ArticleGenerate';
-import Navbar from './components/Navbar';
 import '../src/styles/app.css';
+import ArticleGenerate from './components/ArticleGenerate';
+import ArticleList from './components/ArticleList';
+import Navbar from './components/Navbar';
 
 function App() {
 	return (
